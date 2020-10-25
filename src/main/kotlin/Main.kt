@@ -1,6 +1,5 @@
 package ru.netology
 
-var comission: Double = TODO()
 fun main() {
     val cardVisa = Card("VISA", 0, 1500, 80)
     val cardMaestro = Card("Maestro", 0, 10000000, 789)
@@ -13,17 +12,17 @@ fun main() {
     limitations("VISA", 0)
     transaction(80, 1500, comissionBasedOnType("VISA", 1500))
 }
-
+var comission: Double = 0.0
 fun comissionBasedOnType(cardType: String, sumToTransact: Int): Double {
     if (cardType == "VK Pay") {
         comission = 0.0
     } else {
         if (cardType == "MasterCard" || cardType == "Maestro") {
-            if (300 < sumToTransact && sumToTransact < 75000)
-                comission = 0.06 * sumToTransact + 20 * 100
+            if (sumToTransact in 301..74999)
+                comission = 0.06 * sumToTransact + 20
         } else {
             if ((cardType == "VISA" || cardType == "MIR") && sumToTransact > 35)
-                comission = 0.75 * sumToTransact
+                comission = 0.075 * sumToTransact
         }
     }
     return comission
@@ -34,12 +33,13 @@ fun limitations(cardType: String, transactedLastMonth: Int) {
         if (transactedLastMonth > 15000 || transactedLastMonth < 40000)
             print("loading...")
     } else {
-        print("Операция разрешена")
+        print("Операция разрешена. ")
     }
 }
 fun transaction (sumCard: Int, sumToTransact: Int, comission: Double): Double {
+    print("Баланс карты стал: ")
     print(sumCard - sumToTransact - comission)
-    print("операция прошла")
+    print(" операция прошла")
     return comission
 }
 
