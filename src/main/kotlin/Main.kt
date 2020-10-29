@@ -1,31 +1,16 @@
 package ru.netology
 
 fun main() {
-    val cardVisa = Card("VISA", 0, 1500, 80)
-    val cardMaestro = Card("Maestro", 0, 10000000, 789)
-    val cardVK = Card("VK Pay", 1230000, 12096, 10009)
-    val cardMir = Card("MIR", 0, 1395, 2237)
-    val cardMir2 = Card("MIR", 10000, 1234, 34567)
-    val cardMaster = Card("MasterCard", 99, 1000, 1230087)
+    val cardVisa = Card("VISA", 0, 1500.0, 80.0)
+    val cardMaestro = Card("Maestro", 0, 10000000.8, 789.0)
+    val cardVK = Card("VK Pay", 1230000, 12096.7, 10009.0)
+    val cardMir = Card("MIR", 0, 1395.0, 2237.0)
+    val cardMir2 = Card("MIR", 10000, 1234.9, 34567.9)
+    val cardMaster = Card("MasterCard", 99, 1000.0, 1230087.0)
 
-    comissionBasedOnType("VISA", 1500)
+    comissionBasedOnType("VISA", 1500.0)
     limitations("VISA", 0)
-    transaction(80, 1500, comissionBasedOnType("VISA", 1500))
-}
-var comission: Double = 0.0
-fun comissionBasedOnType(cardType: String, sumToTransact: Int): Double {
-    if (cardType == "VK Pay") {
-        comission = 0.0
-    } else {
-        if (cardType == "MasterCard" || cardType == "Maestro") {
-            if (sumToTransact in 301..74999)
-                comission = 0.06 * sumToTransact + 20
-        } else {
-            if ((cardType == "VISA" || cardType == "MIR") && sumToTransact > 35)
-                comission = 0.075 * sumToTransact
-        }
-    }
-    return comission
+    transaction(80.0, 1500.0, comissionBasedOnType("VISA", 1500.0))
 }
 
 fun limitations(cardType: String, transactedLastMonth: Int) {
@@ -36,12 +21,10 @@ fun limitations(cardType: String, transactedLastMonth: Int) {
         print("Операция разрешена. ")
     }
 }
-fun transaction (sumCard: Int, sumToTransact: Int, comission: Double): Double {
-    print("Баланс карты стал: ")
-    print(sumCard - sumToTransact - comission)
-    print(" операция прошла")
-    return comission
-}
+
+
+
+
 
 
 
